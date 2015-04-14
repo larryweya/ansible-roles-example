@@ -1,0 +1,12 @@
+php_extensions:
+  - php5-mcrypt
+php5_fpm_pools:
+  - name: my_service
+    prefix: /var
+    user: vagrant
+    group: vagrant
+    socket_listen_owner: nginx
+    socket_listen_group: nginx
+    process_max_requests: 500
+    access_log_path: /var/log/php5-fpm-$pool.access.log
+nginx_service_enabled: no

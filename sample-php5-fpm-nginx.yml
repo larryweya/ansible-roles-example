@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - common
+    - nginx
+    - php5
+    - php5-fpm

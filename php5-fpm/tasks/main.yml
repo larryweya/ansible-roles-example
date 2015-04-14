@@ -1,0 +1,12 @@
+---
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: ensure pools exist
+  sudo: yes
+  template: src=pool.conf.j2 dest=/etc/php5/fpm/pool.d/{{ item.name }}.conf
+  with_items: php5_fpm_pools
+  notify:
+    - restart php5-fpm
+  tags:
+    - php5-fpm
