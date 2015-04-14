@@ -1,6 +1,6 @@
 # Collection of Ansible Roles
 
-All the roles will expose variables that will be overridable by host/group variables. These variables are documented on the relevant role's README.
+All the roles expose variables that can be overridden through host/group variables. These variables are documented on the relevant role's README.
 
 ## Usage
 
@@ -57,4 +57,6 @@ ansible-playbook my-playbook.yml -i inventory_file [-u vagrant] [--private-key=~
 
 ## Available Roles
 - [common](common) - plays that setup required utilities e.g. python-software-properties to provide apt-add-repository
+- [nginx](nginx)
 - [php5](php5)
+- [php5-fpm](php5-fpm)
