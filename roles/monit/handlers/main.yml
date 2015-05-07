@@ -1,0 +1,4 @@
+---
+- name: restart monit
+  sudo: yes
+  service: name=monit state=restarted

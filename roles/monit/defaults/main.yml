@@ -1,0 +1,7 @@
+monit_interval: 120
+#monit_start_delay: 240
+monit_httpd_port: 2812
+monit_httpd_address: localhost
+monit_httpd_allow_connect:
+  - localhost
+monit_manage_service_dir: true
