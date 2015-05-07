@@ -10,3 +10,10 @@ php5_fpm_pools:
     process_max_requests: 500
     access_log_path: /var/log/php5-fpm-$pool.access.log
 nginx_service_enabled: no
+monit_services:
+  - name: php5-fpm
+    check: check process php5-fpm with pidfile /var/run/php5-fpm.pid
+    lines:
+      - start program = "/usr/sbin/service php5-fpm start"
+      - stop program = "/usr/sbin/service php5-fpm stop"
+      - if failed unixsocket /var/run/php5-fpm.sock then alert
