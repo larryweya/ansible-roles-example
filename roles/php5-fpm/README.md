@@ -5,9 +5,10 @@
   - `name` e.g. my_service
   - `prefix` e.g. `/var` _default:_ not set
   - `user` - user to run the pool process as; _default:_ `www-data`
-  - `group` - group to run the pool process as; _default_ `www-data`
-  - `socket_listen_owner` e.g. nginx
-  - `socket_listen_group` e.g. nginx
+  - `group` - group to run the pool process as; _default:_ `www-data`
+  - `socket_listen_owner` e.g. nginx _default:_ www-data
+  - `socket_listen_group` e.g. nginx _default:_ www-data
+  - `socket_listen_mode` e.g. 0600 _default:_ not set
   - `pm_mode` - one of `static`, `dynamic` or `ondemand` _default:_ `dynamic`
   - `max_children` _default:_ `5`
   - `min_spare_servers` _default:_ `1`
