@@ -5,6 +5,8 @@
 - `monit_start_delay` - Time in seconds that monit should delay the first service check _optional_ _default_ not set If not defined it will not be set
 - `monit_httpd_port` - Whether to enable the monit http daemon and the port to bind to to _default:_ 2812
 - `monit_httpd_allow_connect` - List of hosts allowed to connect to the http daemon _default:_ localhost
+> NOTE: Both monit_httpd_port and monit_httpd_allow_connect have to be defined for the http daemon to be enabled. of which they are by default
+
 - `monit_manage_service_dir` - Let the role manage the service include dir at /etc/monit/conf.d/ by clearing it on each run
 - `monit_services` - List of monit service definitions each with:
   - `name` - Name of the service that becomes the name of the file at /etc/monit/conf.d/**name**
