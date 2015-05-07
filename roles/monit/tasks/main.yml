@@ -16,12 +16,12 @@
 - name: ensure monit httpd exists if port and connect are defined
   sudo: yes
   template: src=httpd.j2 dest=/etc/monit/httpd
-  when: monit_httpd_port is defined and monit_allow_connect is defined
+  when: monit_httpd_port is defined and monit_httpd_allow_connect is defined
 
 - name: ensure httpd config is included
   sudo: yes
   lineinfile: dest=/etc/monit/monitrc line="include /etc/monit/httpd" validate="monit -t %s" insertbefore="include /etc/monit/conf.d/\*"
-  when: monit_httpd_port is defined and monit_allow_connect is defined
+  when: monit_httpd_port is defined and monit_httpd_allow_connect is defined
   notify: restart monit
 
 - name: ensure service files are cleared
