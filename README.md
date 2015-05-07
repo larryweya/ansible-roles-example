@@ -56,7 +56,8 @@ ansible-playbook my-playbook.yml -i inventory_file [-u vagrant] [--private-key=~
 `
 
 ## Available Roles
-- [common](common) - plays that setup required utilities e.g. python-software-properties to provide apt-add-repository
-- [nginx](nginx)
-- [php5](php5)
-- [php5-fpm](php5-fpm)
+- [common](https://github.com/larryweya/ansible-common) - plays that setup required utilities e.g. python-software-properties to provide apt-add-repository
+- [nginx](https://github.com/larryweya/ansible-nginx)
+- [php5](https://github.com/larryweya/ansible-php5)
+- [php5-fpm](https://github.com/larryweya/ansible-php5-fpm)
+- [monit](https://github.com/larryweya/monit)
