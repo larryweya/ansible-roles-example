@@ -1,0 +1,4 @@
+---
+- name: ensure monit is installed
+  sudo: yes
+  apt: pkg=monit
