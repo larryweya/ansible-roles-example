@@ -1,0 +1,34 @@
+---
+- name: ensure php5-oldstable Ondrej PPA exists
+  sudo: yes
+  apt_repository: repo='ppa:ondrej/php5-oldstable'
+  when: php_ver == 5.4
+  tags:
+    - php5
+
+- name: ensure php5.5 Ondrej PPA exists
+  sudo: yes
+  apt_repository: repo='ppa:ondrej/php5'
+  when: php_ver == 5.5
+  tags:
+    - php5
+
+- name: ensure php5.6 Ondrej PPA exists
+  sudo: yes
+  apt_repository: repo='ppa:ondrej/php5-5.6'
+  when: php_ver == 5.6
+  tags:
+    - php5
+
+- name: ensure php5-cgi is installed
+  sudo: yes
+  apt: pkg=php5-cgi
+  tags:
+    - php5
+
+- name: ensure additional extensions are installed
+  sudo: yes
+  apt: pkg={{ item }}
+  with_items: php_extensions
+  tags:
+    - php5
