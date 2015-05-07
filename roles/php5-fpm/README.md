@@ -16,6 +16,6 @@
   - `process_max_requests` _default:_ `500`
   - `access_log_path` e.g. `/var/log/$pool.access.log`
   - `status_path` _default:_ not set
-  - `php_flags` - Additional php flags e.g. `- php_value[session.save_path] = /var/php/sessions` or `- php_admin_value[session.save_path] = /var/php/sessions` to stop the value from being overwritten by PHP call 'ini_set'
-
   > NOTE: make sure the user specified in `user`, `group` and `socket_listen_owner` and `socket_listen_group` already exist
+  
+- `php_flags` - Additional php flags e.g. `- php_value[session.save_path] = /var/php/sessions` or `- php_admin_value[session.save_path] = /var/php/sessions` to stop the value from being overwritten by PHP call 'ini_set'
