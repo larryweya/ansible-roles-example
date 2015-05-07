@@ -5,3 +5,4 @@ monit_httpd_address: localhost
 monit_httpd_allow_connect:
   - localhost
 monit_manage_service_dir: true
+monit_services: []
