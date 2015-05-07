@@ -1,0 +1,13 @@
+---
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: ensure interval is set
+  sudo: yes
+
+- name: ensure http port is enabled
+  sudo: yes
+  service: name=nginx enabled=no
+  when: not nginx_service_enabled
+  notify:
+    - stop nginx
