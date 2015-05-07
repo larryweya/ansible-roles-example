@@ -1,0 +1,10 @@
+---
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: ensure service is disabled if requested
+  sudo: yes
+  service: name=nginx enabled=no
+  when: not nginx_service_enabled
+  notify:
+    - stop nginx
