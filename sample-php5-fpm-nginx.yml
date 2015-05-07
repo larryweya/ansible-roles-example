@@ -4,3 +4,4 @@
     - nginx
     - php5
     - php5-fpm
+    - monit
