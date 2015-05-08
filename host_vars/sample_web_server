@@ -7,6 +7,8 @@ php5_fpm_pools:
     group: vagrant
     socket_listen_owner: nginx
     socket_listen_group: nginx
+    listen: 127.0.0.1:9001
+    listen_allowed_clients: 127.0.0.1, 192.168.33.100
     process_max_requests: 500
     access_log_path: /var/log/php5-fpm-$pool.access.log
 nginx_service_enabled: no
