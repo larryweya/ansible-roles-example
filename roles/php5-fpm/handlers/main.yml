@@ -2,3 +2,7 @@
 - name: restart php5-fpm
   sudo: yes
   service: name=php5-fpm state=restarted
+
+- name: reload php5-fpm
+  sudo: yes
+  service: name=php5-fpm state=reloaded
