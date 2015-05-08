@@ -2,12 +2,23 @@
 - include: debian.yml
   when: ansible_os_family == "Debian"
 
-- name: ensure interval is set
+- name: ensure monitrc file is up-to-date
   sudo: yes
+  template: src=monitrc.j2 dest=/etc/monit/monitrc mode=0600
+  notify: reload monit
 
-- name: ensure http port is enabled
+- name: ensure service files include dir is deleted
   sudo: yes
-  service: name=nginx enabled=no
-  when: not nginx_service_enabled
-  notify:
-    - stop nginx
+  file: dest=/etc/monit/conf.d state=absent
+  when: monit_manage_service_dir
+
+- name: ensure service include dir exists
+  sudo: yes
+  file: state=directory dest=/etc/monit/conf.d
+  when: monit_manage_service_dir
+
+- name: ensure defined monit services are installed
+  sudo: yes
+  template: src=service.j2 dest=/etc/monit/conf.d/{{ item.name }}
+  with_items: monit_services
+  notify: reload monit

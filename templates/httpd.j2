@@ -1,0 +1,7 @@
+set httpd port {{ monit_httpd_port }} and
+    use address {{ monit_httpd_address }}
+{% for host in monit_httpd_allow_connect %}
+    allow {{ host }}
+{% endfor %}
+#    allow admin:monit      # require user 'admin' with password 'monit'
+#    allow @monit           # allow users of group 'monit' to connect (rw)
