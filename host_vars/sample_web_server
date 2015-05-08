@@ -10,6 +10,11 @@ php5_fpm_pools:
     process_max_requests: 500
     access_log_path: /var/log/php5-fpm-$pool.access.log
 nginx_service_enabled: no
+monit_mail_servers:
+  - localhost port 25
+monit_alert_email_defs:
+  - root@localhost
+  - vagrant@localhost not on { instance, action }
 monit_services:
   - name: php5-fpm
     check: check process php5-fpm with pidfile /var/run/php5-fpm.pid
