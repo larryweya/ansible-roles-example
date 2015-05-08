@@ -30,7 +30,7 @@ monit_httpd_connect_groups:
  - vagrant readonly
 ```
 
-- `monit_manage_service_dir` - Let the role manage the service include dir at /etc/monit/conf.d/ by clearing it on each run
+- `monit_manage_service_dir` - Let the role manage the service include dir at /etc/monit/conf.d/ by clearing it on each run _default:_ true
 - `monit_services` - List of monit service definitions each with:
   - `name` - Name of the service that becomes the name of the file at /etc/monit/conf.d/**name**
   - `check` - Check definition e.g. _check process php5-fpm with pidfile /var/run/php5-fpm.pid_
