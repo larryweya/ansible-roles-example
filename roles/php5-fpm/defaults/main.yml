@@ -2,6 +2,7 @@
   pool_group: www-data
   socket_listen_owner: www-data
   socket_listen_group: www-data
+  listen: /var/run/php5-fpm.sock
   pool_pm_mode: dynamic
   pool_max_children: 5
   pool_min_spare_servers: 1

@@ -8,6 +8,15 @@
   - `group` - group to run the pool process as; _default:_ `www-data`
   - `socket_listen_owner` e.g. nginx _default:_ www-data
   - `socket_listen_group` e.g. nginx _default:_ www-data
+  - `listen` - pool listen directive, either a path to a socket or a host:port pair _default:_ /var/run/php5-fpm.sock e.g.
+  ```
+  listen = /var/run/php5-fpm-my_service.sock
+  ```
+  or
+  ```
+  listen = 127.0.0.1:9000
+  ```
+  - `listen_allowed_clients` - Comma separated list of hosts allowed to connect _default:_ not set which means any host
   - `socket_listen_mode` e.g. 0600 _default:_ not set
   - `pm_mode` - one of `static`, `dynamic` or `ondemand` _default:_ `dynamic`
   - `max_children` _default:_ `5`
@@ -17,5 +26,5 @@
   - `access_log_path` e.g. `/var/log/$pool.access.log`
   - `status_path` _default:_ not set
   > NOTE: make sure the user specified in `user`, `group` and `socket_listen_owner` and `socket_listen_group` already exist
-  
+
 - `php_flags` - Additional php flags e.g. `- php_value[session.save_path] = /var/php/sessions` or `- php_admin_value[session.save_path] = /var/php/sessions` to stop the value from being overwritten by PHP call 'ini_set'

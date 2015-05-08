@@ -39,7 +39,7 @@ group = {{ item.group }}
 ;                            (IPv6 and IPv4-mapped) on a specific port;
 ;   '/path/to/unix/socket' - to listen on a unix socket.
 ; Note: This value is mandatory.
-listen = /var/run/php5-fpm-{{ item.name }}.sock
+listen = {{ item.listen }}
 
 ; Set listen(2) backlog.
 ; Default Value: 65535 (-1 on FreeBSD and OpenBSD)
@@ -54,8 +54,6 @@ listen.owner = {{ item.socket_listen_owner }}
 listen.group = {{ item.socket_listen_group }}
 {% if item.socket_listen_mode is defined %}
 listen.mode = {{ item.socket_listen_mode }}
-{% else %}
-;listen.mode = 0600
 {% endif %}
 
 ; List of addresses (IPv4/IPv6) of FastCGI clients which are allowed to connect.
@@ -64,7 +62,9 @@ listen.mode = {{ item.socket_listen_mode }}
 ; must be separated by a comma. If this value is left blank, connections will be
 ; accepted from any ip address.
 ; Default Value: any
-;listen.allowed_clients = 127.0.0.1
+{% if item.listen_allowed_clients is defined %}
+listen.allowed_clients = {{ item.listen_allowed_clients }}
+{% endif %}
 
 ; Specify the nice(2) priority to apply to the pool processes (only if set)
 ; The value can vary from -19 (highest priority) to 20 (lower priority)
