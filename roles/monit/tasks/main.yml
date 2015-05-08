@@ -2,35 +2,17 @@
 - include: debian.yml
   when: ansible_os_family == "Debian"
 
-- name: ensure interval is set
+- name: ensure monitrc file is up-to-date
   sudo: yes
-  lineinfile: dest=/etc/monit/monitrc regexp="set daemon" line="set daemon {{ monit_interval }}"
-  notify: restart monit
+  template: src=monitrc.j2 dest=/etc/monit/monitrc mode=0600
+  notify: reload monit
 
-- name: ensure start delay is set if defined
-  sudo: yes
-  lineinfile: dest=/etc/monit/monitrc regexp="^  with start delay" line="  with start delay {{ monit_start_delay }}" insertafter="set daemon"
-  when: monit_start_delay is defined
-  notify: restart monit
-
-- name: ensure monit httpd exists if port and connect are defined
-  sudo: yes
-  template: src=httpd.j2 dest=/etc/monit/httpd
-  when: monit_httpd_port is defined and monit_httpd_allow_connect is defined
-
-- name: ensure httpd config is included
-  sudo: yes
-  lineinfile: dest=/etc/monit/monitrc line="include /etc/monit/httpd" validate="monit -t %s" insertbefore="include /etc/monit/conf.d/\*"
-  when: monit_httpd_port is defined and monit_httpd_allow_connect is defined
-  notify: restart monit
-
-- name: ensure service files are cleared
+- name: ensure service files include dir is deleted
   sudo: yes
   file: dest=/etc/monit/conf.d state=absent
   when: monit_manage_service_dir
-  notify: restart monit
 
-- name: ensure service dir exists
+- name: ensure service include dir exists
   sudo: yes
   file: state=directory dest=/etc/monit/conf.d
   when: monit_manage_service_dir
@@ -39,4 +21,4 @@
   sudo: yes
   template: src=service.j2 dest=/etc/monit/conf.d/{{ item.name }}
   with_items: monit_services
-  notify: restart monit
+  notify: reload monit

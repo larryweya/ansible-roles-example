@@ -1,8 +1,12 @@
 monit_interval: 120
 #monit_start_delay: 240
+monit_mail_servers: []
+monit_alert_email_defs: []
 monit_httpd_port: 2812
 monit_httpd_address: localhost
-monit_httpd_allow_connect:
+monit_httpd_connect_hosts:
   - localhost
+monit_httpd_connect_creds: []
+monit_httpd_connect_groups: []
 monit_manage_service_dir: true
 monit_services: []
