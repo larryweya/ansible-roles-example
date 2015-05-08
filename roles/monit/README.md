@@ -18,6 +18,15 @@ monit_alert_email_defs:
   - foo@bar only on { timeout, nonexist } # only alert on timeouts and nonexist events
 ```
 
+- `mail_format` - Override the default mail format with e.g. a custom from address. Useful when your mail server woun't send from monit@short-host-name and you haven't set your fqdn for some reason
+```yaml
+mail_format: "from: me@example.com"
+```
+becomes
+```yaml
+mail-format { from: me@example.com }
+```
+
 - `monit_httpd_port` - Whether to enable the monit http daemon and the port to bind to to _default:_ 2812
 - `monit_httpd_connect_hosts` - List of hosts allowed to connect to the http daemon _default:_ localhost
 > NOTE: Both monit_httpd_port and monit_httpd_connect_hosts have to be defined for the http daemon to be enabled. of which they are by default

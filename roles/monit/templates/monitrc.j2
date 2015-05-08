@@ -101,7 +101,9 @@
 ## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
 ## are expanded at runtime. For example, to override the sender, use:
 #
-# set mail-format { from: monit@foo.bar }
+{% if monit_mail_format is defined %}
+set mail-format { {{ monit_mail_format }} }
+{% endif %}
 #
 #
 ## You can set alert recipients whom will receive alerts if/when a
