@@ -4,11 +4,21 @@ All the roles expose variables that can be overridden through host/group variabl
 
 ## Usage
 
-1. Clone this repo, preferably as a [subtree](http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/) to stay up-to-date with changes and contribute upstream easily
+1. Create an [Ansible](http://www.ansible.com/get-started) project or clone this repo as a starting point. The structure looks something like this.
 
-2. Create an inventory
+```
+/my-ansible-project/
+  /group_vars/
+  /host_vars/
+  /roles/ - Subtree (http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/) pull from the subprojects
+  /production - Production inventory file
+  /development - Development inventory file
+  /playbook.yml
+```
 
-  `production_inventory`
+2. Create an inventory file
+
+  `/production_inventory`
   ```
   [web1]
   192.168.33.100 ansible_ssh_user=vagrant
@@ -23,7 +33,7 @@ All the roles expose variables that can be overridden through host/group variabl
 
 3. Override some variables
 
-  `host_vars/web1`
+  `/host_vars/web1`
   ```
   php_extensions:
     - php5-mcrypt
@@ -36,11 +46,12 @@ All the roles expose variables that can be overridden through host/group variabl
       socket_listen_group: nginx
       process_max_requests: 500
       access_log_path: /var/log/php5-fpm-$pool.access.log
-      nginx_service_enabled: no
+  nginx_service_enabled: no
   ```
 
 4. Create a playbook and add some roles
 
+  `/my_playbook.yml`
   ```
   - hosts: webservers
     roles:
